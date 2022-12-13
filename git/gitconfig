@@ -1,0 +1,8 @@
+[credential]
+    helper = store --file ~/.git-credentials
+[core]
+    editor = vim
+	excludesfile = /Users/wiebe/.gitignore_global
+[user]
+    email = wiebe@kloosterman.eu
+    name = Wiebe Kloosterman
