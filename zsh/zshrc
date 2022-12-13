@@ -1,0 +1,25 @@
+export ZSH="/Users/wiebe/.oh-my-zsh"
+
+ZSH_THEME="robbyrussell"
+
+plugins=(
+git
+macos
+docker
+vagrant-prompt
+vagrant
+zsh-autosuggestions
+zsh-syntax-highlighting
+)
+
+source $ZSH/oh-my-zsh.sh
+
+#
+PATH=$PATH:~/bin
+
+alias expose='~/.composer/vendor/bin/expose'
+export PATH="/usr/local/opt/php@8.1/bin:$PATH"
+export PATH="/usr/local/opt/php@8.1/sbin:$PATH"
+eval "$(pyenv init -)"
+export PATH="/usr/local/opt/node@16/bin:$PATH"
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
