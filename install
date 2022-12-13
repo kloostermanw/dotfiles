@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+ln -sf $DOTFILES/zsh/zshrc $HOME/.zshrc
+
+rm -rf $HOME/.vimrc
+ln -sf $DOTFILES/vim/vimrc $HOME/.vimrc
+
+ln -sf $DOTFILES/git/gitconfig $HOME/.gitconfig
+
+ln -sf $DOTFILES/git/gitignore_global $HOME/.gitignore_global
