@@ -1,11 +1,16 @@
 #!/usr/bin/env sh
 
+# Zsh
 cp ~/repos/dotfiles/zsh/zshrc ~/.zshrc
 
+# Vim
 cp ~/repos/dotfiles/vim/vimrc ~/.vimrc
 
+# Git
 cp ~/repos/dotfiles/git/gitconfig ~/.gitconfig
 cp ~/repos/dotfiles/git/gitignore_global ~/.gitignore_global
 
+# Claude
 cp ~/repos/dotfiles/.claude/statusline.py ~/.claude/
 cp -r ~/repos/dotfiles/.claude/skills/* ~/.claude/skills/
+chmod +x ~/.claude/statusline.py
