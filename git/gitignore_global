@@ -1,3 +1,10 @@
 .DS_Store
 .AppleDouble
 .idea
+.claude
+.php-cs-fixer.dist.php
+.php-cs-fixer.cache
+.phpunit.result.cache
+CLAUDE.local.md
+wietty.json
+docs/superpowers/*

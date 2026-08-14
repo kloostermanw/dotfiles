@@ -1,0 +1,20 @@
+# Disallowed words in commit messages.
+# One word per line. Lines starting with # and blank lines are ignored.
+# Matching is whole-word and case-insensitive (WIP matches, wiper does not).
+# Edit this file freely; the hook re-reads it on every commit.
+
+# casual / junk markers
+wip
+asdf
+temp
+fixme
+foobar
+antropic
+Co-Authored-By
+Co-Authored-By:
+
+# swear words
+fuck
+shit
+crap
+damn

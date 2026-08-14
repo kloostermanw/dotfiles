@@ -3,6 +3,7 @@
 [core]
     editor = vim
 	excludesfile = /Users/wiebe/.gitignore_global
+    hooksPath = /Users/wiebe/.config/git/hooks
 [user]
-    email = wiebe@kloosterman.eu
-    name = Wiebe Kloosterman
+	name = Wiebe
+	email = wiebe@celerypayroll.com
