@@ -1,12 +1,11 @@
 #!/usr/bin/env sh
 
-DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cp ~/repos/dotfiles/zsh/zshrc ~/.zshrc
 
-ln -sf $DOTFILES/zsh/zshrc $HOME/.zshrc
+cp ~/repos/dotfiles/vim/vimrc ~/.vimrc
 
-rm -rf $HOME/.vimrc
-ln -sf $DOTFILES/vim/vimrc $HOME/.vimrc
+cp ~/repos/dotfiles/git/gitconfig ~/.gitconfig
+cp ~/repos/dotfiles/git/gitignore_global ~/.gitignore_global
 
-ln -sf $DOTFILES/git/gitconfig $HOME/.gitconfig
-
-ln -sf $DOTFILES/git/gitignore_global $HOME/.gitignore_global
+cp ~/repos/dotfiles/.claude/statusline.py ~/.claude/
+cp -r ~/repos/dotfiles/.claude/skills/* ~/.claude/skills/
