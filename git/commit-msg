@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+#
+# commit-msg hook: reject commit messages containing disallowed words.
+#
+# Word list:   ../disallowed-words.txt  (relative to this hook)
+#              override with DISALLOWED_WORDS_FILE=/some/path
+# Matching:    whole-word, case-insensitive, literal (not regex)
+# Ignored:     blank lines and # comments in the word list,
+#              # comments and the `git commit -v` diff in the message
+# Bypass:      git commit --no-verify
+
+set -uo pipefail
+
+msg_file="${1:-}"
+if [ -z "$msg_file" ] || [ ! -f "$msg_file" ]; then
+	printf 'commit-msg: no message file given; nothing to check.\n' >&2
+	exit 0
+fi
+
+hook_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+words_file="${DISALLOWED_WORDS_FILE:-$hook_dir/../disallowed-words.txt}"
+
+if [ ! -f "$words_file" ]; then
+	printf 'commit-msg: word list not found at %s -- skipping check.\n' \
+		"$words_file" >&2
+	exit 0
+fi
+
+# Git's comment character, so we strip the right lines from the message.
+comment_char="$(git config --get core.commentChar 2>/dev/null)"
+case "$comment_char" in
+	'' | auto) comment_char='#' ;;
+esac
+
+# Blank out comment lines (rather than deleting them) so reported line
+# numbers still match the real file, and stop at the `commit -v` scissors
+# line so words inside the diff don't trigger the hook.
+cleaned="$(awk -v cc="$comment_char" '
+	index($0, cc) == 1 && index($0, ">8") > 0 { exit }
+	index($0, cc) == 1                        { print ""; next }
+	                                          { print }
+' "$msg_file")"
+
+# Nothing but comments/whitespace? Let git handle the empty-message case.
+if [ -z "$(printf '%s' "$cleaned" | tr -d '[:space:]')" ]; then
+	exit 0
+fi
+
+found=0
+report=""
+
+while IFS= read -r raw || [ -n "$raw" ]; do
+	word="${raw%$'\r'}"                      # tolerate CRLF word lists
+	word="${word#"${word%%[![:space:]]*}"}"  # trim leading whitespace
+	word="${word%"${word##*[![:space:]]}"}"  # trim trailing whitespace
+
+	[ -z "$word" ] && continue
+	case "$word" in "$comment_char"* | '#'*) continue ;; esac
+
+	hits="$(printf '%s\n' "$cleaned" | grep -n -i -w -F -- "$word")" || continue
+
+	found=1
+	while IFS= read -r hit; do
+		lineno="${hit%%:*}"
+		text="${hit#*:}"
+		report+="  line ${lineno}: ${word}"$'\n'
+		report+="    ${text}"$'\n'
+	done <<<"$hits"
+done <"$words_file"
+
+if [ "$found" -eq 0 ]; then
+	exit 0
+fi
+
+{
+	printf '\ncommit-msg: disallowed words in commit message\n\n'
+	printf '%s' "$report"
+	printf '\nWord list: %s\n' "$words_file"
+	printf 'Reword the message.\n\n'
+} >&2
+
+exit 1

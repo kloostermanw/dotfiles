@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+
+# Zsh
+cp ~/.zshrc ~/repos/dotfiles/zsh/zshrc
+
+# Vim
+cp ~/.vimrc ~/repos/dotfiles/vim/vimrc
+
+# Git
+cp ~/.gitconfig ~/repos/dotfiles/git/gitconfig ~/.gitconfig
+cp ~/.gitignore_global ~/repos/dotfiles/git/gitignore_global ~/.gitignore_global
+# -
+cp ~/.config/git/disallowed-words.txt ~/repos/dotfiles/git/disallowed-words.txt
+cp ~/.config/git/hooks/commit-msg ~/repos/dotfiles/git/commit-msg
+
+# Claude
+cp ~/.claude/statusline.py  ~/repos/dotfiles/claude/statusline.py 
+cp -r ~/.claude/skills/* ~/repos/dotfiles/claude/skills/*
+# -
+
+# Wietty
+cp ~/.config/wietty/config ~/repos/dotfiles/wietty/config
+cp ~/.config/wietty/ghostty.cfg ~/repos/dotfiles/wietty/ghostty.cfg

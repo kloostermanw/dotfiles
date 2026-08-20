@@ -1,8 +1,64 @@
 {
-  "theme": "dark",
+  "model": "claude-opus-4-8",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.py",
     "padding": 2
+  },
+  "enabledPlugins": {
+    "superpowers@superpowers-dev": true,
+    "code-review@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "superpowers-dev": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/obra/superpowers.git"
+      }
+    },
+    "claude-plugins-official": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/anthropics/claude-plugins-official.git"
+      }
+    }
+  },
+  "theme": "dark",
+  "preferredNotifChannel": "ghostty",
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "Bash(xcodegen generate)",
+      "Bash(xcodebuild -scheme Wietty -destination 'platform=macOS' build)",
+      "Bash(xcodebuild -scheme Wietty -destination 'platform=macOS' test)"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: assume private unless the remote host and repo name indicate otherwise, or a visibility check in the transcript shows public (gh visibility check for kloostermanw/wietty returned not queryable here)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: Default branch is `develop` (v1 line, fixes only); repo docs describe a git flow of feature branches off `v2` opened as PRs against `v2`, with `main`/`develop` as the v1 line and `release/vX.Y.Z` branches tagged `vX.Y.Z`; gh reports no rulesets and no protected branches listed for kloostermanw/wietty",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Source control**: The trusted repo (kloostermanw/wietty) and its remote(s) only (no additional orgs configured)",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment (hyphen/underscore/dot-delimited)",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development (macOS app development for Wietty, a workspace manager with terminal and LAN remote protocol)",
+      "**Trusted repo**: /Users/wiebe/repos/wietty and its remote https://github.com/kloostermanw/wietty (visibility not queryable here — treat as private per default until confirmed otherwise)",
+      "**Org-specific CLIs**: None configured (project-specific toolchain: xcodebuild, xcodegen, swift, per repo docs)",
+      "routine under /Users/wiebe/repos/wietty/ prefix: xcodebuild and xcodegen invocations for build/test/project-generation, per CLAUDE.md and README"
+    ]
   }
 }

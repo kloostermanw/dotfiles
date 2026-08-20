@@ -9,8 +9,15 @@ cp ~/repos/dotfiles/vim/vimrc ~/.vimrc
 # Git
 cp ~/repos/dotfiles/git/gitconfig ~/.gitconfig
 cp ~/repos/dotfiles/git/gitignore_global ~/.gitignore_global
+mkdir -p ~/.config/git/hooks
+cp ~/repos/dotfiles/git/disallowed-words.txt ~/.config/git/disallowed-words.txt
+cp ~/repos/dotfiles/git/commit-msg ~/.config/git/hooks/commit-msg
 
 # Claude
-cp ~/repos/dotfiles/.claude/statusline.py ~/.claude/
-cp -r ~/repos/dotfiles/.claude/skills/* ~/.claude/skills/
+cp ~/repos/dotfiles/claude/statusline.py ~/.claude/statusline.py
+cp -r ~/repos/dotfiles/claude/skills/* ~/.claude/skills/
 chmod +x ~/.claude/statusline.py
+
+# Wietty
+cp ~/repos/dotfiles/wietty/config ~/.config/wietty/config
+cp ~/repos/dotfiles/wietty/ghostty.cfg ~/.config/wietty/ghostty.cfg
