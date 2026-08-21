@@ -21,3 +21,6 @@ chmod +x ~/.claude/statusline.py
 # Wietty
 cp ~/repos/dotfiles/wietty/config ~/.config/wietty/config
 cp ~/repos/dotfiles/wietty/ghostty.cfg ~/.config/wietty/ghostty.cfg
+
+# General
+cp ~/repos/dotfiles/general/etc_hosts /etc/hosts

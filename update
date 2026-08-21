@@ -21,3 +21,6 @@ cp -r ~/.claude/skills/* ~/repos/dotfiles/claude/skills/*
 # Wietty
 cp ~/.config/wietty/config ~/repos/dotfiles/wietty/config
 cp ~/.config/wietty/ghostty.cfg ~/repos/dotfiles/wietty/ghostty.cfg
+
+# General
+cp /etc/hosts ~/repos/dotfiles/general/etc_hosts
